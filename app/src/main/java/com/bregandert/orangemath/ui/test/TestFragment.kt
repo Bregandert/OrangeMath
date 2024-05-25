@@ -1,4 +1,4 @@
-package com.bregandert.orangemath.ui.home
+package com.bregandert.orangemath.ui.test
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bregandert.orangemath.MainActivity
 import com.bregandert.orangemath.R
-import com.bregandert.orangemath.databinding.FragmentHomeBinding
+import com.bregandert.orangemath.databinding.FragmentTestBinding
+import com.bregandert.orangemath.ui.test.TestViewModel
 
-class HomeFragment : Fragment() {
+class TestFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentTestBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,14 +26,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val testViewModel =
+            ViewModelProvider(this).get(TestViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentTestBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textDashboard
+        testViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
@@ -41,10 +42,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button: Button = binding.buttonLearning09
+        val button: Button = binding.buttonHome
 
         button.setOnClickListener {
-            (activity as MainActivity).navController.navigate(R.id.action_navigation_home_to_navigation_learning)
+            (activity as MainActivity).navController.navigate(R.id.action_navigation_test_to_navigation_home)
         }
     }
 
