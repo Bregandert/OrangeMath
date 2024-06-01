@@ -41,9 +41,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button: Button = binding.buttonLearning09
+        val button_09: Button = binding.buttonLearning09
+        val button_19: Button = binding.buttonLearning1019
+        val button_29: Button = binding.buttonLearning2029
 
-        button.setOnClickListener {
+        button_09.setOnClickListener {
+            LEARNING_STAGE = 1
+            (activity as MainActivity).navController.navigate(R.id.action_navigation_home_to_navigation_learning)
+        }
+
+        button_19.setOnClickListener {
+            LEARNING_STAGE = 2
+            (activity as MainActivity).navController.navigate(R.id.action_navigation_home_to_navigation_learning)
+        }
+
+        button_29.setOnClickListener {
+            LEARNING_STAGE = 3
             (activity as MainActivity).navController.navigate(R.id.action_navigation_home_to_navigation_learning)
         }
     }
@@ -52,4 +65,9 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    companion object {
+        var LEARNING_STAGE = 0
+    }
+
 }
