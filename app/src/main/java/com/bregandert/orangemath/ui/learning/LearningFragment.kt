@@ -31,17 +31,14 @@ class LearningFragment : Fragment() {
         _binding = FragmentLearningBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        learningViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button: Button = binding.buttonTest09
+        val button: Button = binding.buttonLearningRigth
 
         button.setOnClickListener {
             (activity as MainActivity).navController.navigate(R.id.action_navigation_learning_to_navigation_test)
