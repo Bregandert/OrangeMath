@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_test"
-        android:name="com.bregandert.orangemath.ui.test.TestFragment"
+        android:name="com.bregandert.orangemath.ui.Examination.ExaminationFragment"
         android:label="@string/title_test"
         tools:layout="@layout/fragment_test" >
         <action
