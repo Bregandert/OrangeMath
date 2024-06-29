@@ -10,18 +10,15 @@ import com.bregandert.orangemath.domain.entity.NumberCount
 
 class NumberAdapter: RecyclerView.Adapter<NumberAdapter.NumberHolder>() {
 
+
+
     val numberList = ArrayList<NumberCount>()
     class NumberHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = NumbercountItemBinding.bind(item)
-
-
-
         fun bind(numberCount: NumberCount) = with(binding){
             imageNumber.setImageResource(numberCount.numberImage)
             textNumber.text=numberCount.number
-
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NumberHolder {
@@ -38,7 +35,6 @@ class NumberAdapter: RecyclerView.Adapter<NumberAdapter.NumberHolder>() {
     }
 
     fun addNumber(number: NumberCount) {
-        numberList.clear()
         numberList.add(number)
         notifyDataSetChanged()
 

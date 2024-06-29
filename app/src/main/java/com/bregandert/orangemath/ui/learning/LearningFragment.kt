@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +35,7 @@ class LearningFragment : Fragment() {
         R.drawable.number_background,
         R.drawable.number_background,
         R.drawable.number_background,
+        R.drawable.number_background,
     )
 
 
@@ -51,12 +53,12 @@ class LearningFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        learningViewModel = ViewModelProvider(this).get(LearningViewModel::class.java)
+//        learningViewModel = ViewModelProvider(this).get(LearningViewModel::class.java)
 
         _binding = FragmentLearningBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
     init()
+        return binding.root
+//    init()
 
     }
 
@@ -64,7 +66,7 @@ class LearningFragment : Fragment() {
 
     private fun init() {
         binding.apply {
-            topRecycler.layoutManager = GridLayoutManager(this as MainActivity, 5)
+            topRecycler.layoutManager = GridLayoutManager(context, 5)
             topRecycler.adapter = numberAdapter
 
         }
