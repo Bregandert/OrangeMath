@@ -1,10 +1,10 @@
-package com.bregandert.orangemath.ui.test
+package com.bregandert.orangemath.ui.Examination
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class TestViewModel : ViewModel() {
+class ExaminationViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is test Fragment"

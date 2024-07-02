@@ -1,4 +1,4 @@
-package com.bregandert.orangemath.ui.test
+package com.bregandert.orangemath.ui.Examination
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bregandert.orangemath.MainActivity
 import com.bregandert.orangemath.R
 import com.bregandert.orangemath.databinding.FragmentTestBinding
-import com.bregandert.orangemath.ui.test.TestViewModel
 
-class TestFragment : Fragment() {
+class ExaminationFragment : Fragment() {
 
     private var _binding: FragmentTestBinding? = null
 
@@ -26,14 +25,14 @@ class TestFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val testViewModel =
-            ViewModelProvider(this).get(TestViewModel::class.java)
+        val examinationViewModel =
+            ViewModelProvider(this).get(ExaminationViewModel::class.java)
 
         _binding = FragmentTestBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        testViewModel.text.observe(viewLifecycleOwner) {
+        examinationViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

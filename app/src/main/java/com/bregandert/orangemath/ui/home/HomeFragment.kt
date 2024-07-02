@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.bregandert.orangemath.MainActivity
 import com.bregandert.orangemath.R
 import com.bregandert.orangemath.databinding.FragmentHomeBinding
+import com.bregandert.orangemath.ui.learning.LearningFragment
 
 class HomeFragment : Fragment() {
 
@@ -53,6 +55,7 @@ class HomeFragment : Fragment() {
         button_19.setOnClickListener {
             LEARNING_STAGE = 2
             (activity as MainActivity).navController.navigate(R.id.action_navigation_home_to_navigation_learning)
+
         }
 
         button_29.setOnClickListener {
@@ -68,6 +71,7 @@ class HomeFragment : Fragment() {
 
     companion object {
         var LEARNING_STAGE = 0
+//        val LearningFragment = LearningFragment()
     }
 
 }
