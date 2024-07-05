@@ -1,4 +1,4 @@
-package com.bregandert.orangemath.ui.rv_adapters
+package com.bregandert.orangemath.utils.rv_adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -40,8 +40,13 @@ class NumberAdapter: RecyclerView.Adapter<NumberAdapter.NumberHolder>() {
 
     }
 
-    fun deleteNumber(number: NumberCount){
+    fun deleteNumber(numberCount: NumberCount){
     numberList.remove(numberList.last())
+        notifyDataSetChanged()
+    }
+
+    fun clearNumberList(numberCount: NumberCount) {
+        numberList.clear()
         notifyDataSetChanged()
     }
 

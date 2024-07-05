@@ -1,18 +1,13 @@
 package com.bregandert.orangemath.data
 
-import com.bregandert.orangemath.R
-import com.bregandert.orangemath.R.layout.orange_animation_item
-import com.bregandert.orangemath.domain.entity.NumberCount
-import com.bregandert.orangemath.domain.entity.Orange
-
 class Mainrepository {
 
-    var orangeList = mutableListOf<Orange>()
-
-    val numbersList = listOf(
-        NumberCount("1", R.drawable.number_background),
-        NumberCount("2", R.drawable.number_background)
-    )
+//    var orangeList = mutableListOf<Orange>()
+//
+//    val numbersList = listOf(
+//        NumberCount("1", R.drawable.number_background),
+//        NumberCount("2", R.drawable.number_background)
+//    )
 
 //    fun addOrangeItem(n: Int): List<Orange> {
 //        if (0<n && n<11) {
