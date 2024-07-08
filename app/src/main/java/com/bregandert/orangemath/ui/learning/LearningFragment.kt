@@ -5,104 +5,119 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.GridLayout
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bregandert.orangemath.MainActivity
-import com.bregandert.orangemath.R
 import com.bregandert.orangemath.databinding.FragmentLearningBinding
-import com.bregandert.orangemath.domain.entity.NumberCount
-import com.bregandert.orangemath.ui.rv_adapters.NumberAdapter
+import com.bregandert.orangemath.utils.rv_adapters.NumberAdapter
+import com.bregandert.orangemath.utils.rv_adapters.OrangeAdapter
 
 class LearningFragment : Fragment() {
-
     private var _binding: FragmentLearningBinding? = null
+    private val binding get() = _binding!!
     lateinit var learningViewModel: LearningViewModel
     private val numberAdapter = NumberAdapter()
-    private var number = 1
-    private val numberCountList = listOf(
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-        R.drawable.number_background,
-    )
+    private val orangeAdapter = OrangeAdapter()
+    private var number = 0
 
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        _binding = FragmentLearningBinding.inflate(layoutInflater)
-//        startActivity(MainActivity, savedInstanceState)
-//    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        learningViewModel = ViewModelProvider(this).get(LearningViewModel::class.java)
-
+        learningViewModel = ViewModelProvider(this).get(LearningViewModel::class.java)
         _binding = FragmentLearningBinding.inflate(inflater, container, false)
-    init()
+        initTopRecycler()
+        initDownRecycler()
         return binding.root
-//    init()
-
     }
 
-
-
-    private fun init() {
+    private fun initTopRecycler() {
         binding.apply {
             topRecycler.layoutManager = GridLayoutManager(context, 5)
             topRecycler.adapter = numberAdapter
-
         }
     }
 
-
+    private fun initDownRecycler() {
+        binding.apply {
+            downRecycler.layoutManager = GridLayoutManager(context, 5)
+            downRecycler.adapter = orangeAdapter
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        buttonRigth()
+        buttonLeft()
+      }
 
-//        init()
+    fun buttonRigth() {
+        val buttonRigth: Button = binding.buttonLearningRigth
+        buttonRigth.setOnClickListener {
+            val numberCount = learningViewModel.numberItem(number)
+            val orange = learningViewModel.orangeItem(number)
+            if (number > 0) {
+                orangeAdapter.addOrange(orange)
+            }
+            if (number > -1 && number < 10) {
 
-//        val n = 0
-//
-//        var name: String = "orangeView$n"
-//
-//
-        val button: Button = binding.buttonLearningRigth
-//
-//        val itemOrange = learningViewModel.orangeList.last()
+                binding.number2.text = number.toString()
+                binding.number2.visibility = View.VISIBLE
+                numberAdapter.addNumber(numberCount)
 
-        button.setOnClickListener {
-            val numberCount = NumberCount((number-1).toString(), numberCountList[number])
-            numberAdapter.addNumber(numberCount)
+
+            } else {
+                binding.case1.visibility = View.VISIBLE
+                numberAdapter.clearNumberList(numberCount)
+            }
             number++
-
-//            val imageOrange = itemOrange.orangeImage
-//
-//            val imageV =  learningViewModel.getNumberItem(1)
-//            binding.number2.setImageResource(R.drawable.number_0)
-
-//            (activity as MainActivity).navController.navigate(R.id.action_navigation_learning_to_navigation_test)
         }
     }
+    fun buttonLeft() {
+        val buttonLeft: Button = binding.buttonLearningLeft
+        buttonLeft.setOnClickListener {
+            number--
+            var numberCount = learningViewModel.numberItem(number)
+            val orange = learningViewModel.orangeItem(number)
+            numberAdapter.deleteNumber(numberCount)
+            binding.number2.text = (number-1).toString()
+            if (number>0) {
+                orangeAdapter.deleteOrange(orange)
+            } else {
+                orangeAdapter.clearOrangeList(orange)
+                binding.number2.visibility = View.INVISIBLE
+            }
 
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
+//    private val numberCountList = listOf(
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//        R.drawable.number_background,
+//    )
+//    private val orangeList = listOf(
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//        R.drawable.ic_orange,
+//    )

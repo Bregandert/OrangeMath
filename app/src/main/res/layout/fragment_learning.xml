@@ -35,17 +35,39 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <TextView
             android:id="@+id/number_1"
             android:layout_width="70dp"
             android:layout_height="120dp"
+            android:background="@drawable/number_background"
+            android:visibility="invisible"
+            android:fontFamily="@font/irish_grover"
+            android:gravity="center"
+            android:shadowColor="@color/orangemath_green"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="10"
+            android:text="1"
+            android:textColor="#000000"
+            android:textSize="80sp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/number_2"
             android:layout_width="70dp"
             android:layout_height="120dp"
+            android:background="@drawable/number_background"
+            android:visibility="invisible"
+            android:fontFamily="@font/irish_grover"
+            android:gravity="center"
+            android:shadowColor="@color/orangemath_green"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="10"
+            android:text="1"
+            android:textColor="#000000"
+            android:textSize="80sp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp" />
 
@@ -53,7 +75,7 @@
     </GridLayout>
 
     <GridLayout
-        android:id="@+id/case_recycler"
+        android:id="@+id/case_container"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginTop="240dp"
@@ -64,6 +86,33 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/case_1"
+            android:visibility="invisible"
+            android:background="@drawable/ic_oranges_box"
+            android:layout_height="56dp"
+            android:layout_width="56dp"
+            android:layout_margin="12dp"/>
+
+        <ImageView
+            android:id="@+id/case_2"
+            android:visibility="invisible"
+            android:background="@drawable/ic_oranges_box"
+            android:layout_height="56dp"
+            android:layout_width="56dp"
+            android:layout_margin="12dp"/>
+
+        <ImageView
+            android:id="@+id/case_3"
+            android:visibility="invisible"
+            android:background="@drawable/ic_oranges_box"
+            android:layout_height="56dp"
+            android:layout_width="56dp"
+            android:layout_margin="12dp"/>
+
+        <ImageView
+            android:id="@+id/case_4"
+            android:visibility="invisible"
+            android:background="@drawable/ic_oranges_box"
             android:layout_height="56dp"
             android:layout_width="56dp"
             android:layout_margin="12dp"/>
@@ -76,12 +125,15 @@
         android:layout_width="0dp"
         android:layout_height="160dp"
         android:layout_marginTop="30dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="5"
         app:layout_constraintBottom_toTopOf="@+id/button_learning_left"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/number_container">
-
+        app:layout_constraintTop_toBottomOf="@id/number_container"
+        tools:itemCount="10"
+        tools:listitem="@layout/orange_item">
     </androidx.recyclerview.widget.RecyclerView>
 
 
@@ -90,14 +142,15 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="195dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:background="@drawable/shape_round_button"
         android:foregroundGravity="center_vertical"
         android:text="назад"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/down_recycler"
+
         app:layout_constraintStart_toStartOf="parent"/>
 
     <android.widget.Button
@@ -105,14 +158,14 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="195dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:background="@drawable/shape_round_button"
         android:foregroundGravity="center_vertical"
         android:text="вперед"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/down_recycler"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 

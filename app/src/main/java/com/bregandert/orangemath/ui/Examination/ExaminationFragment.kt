@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bregandert.orangemath.MainActivity
 import com.bregandert.orangemath.R
-import com.bregandert.orangemath.databinding.FragmentTestBinding
+import com.bregandert.orangemath.databinding.FragmentExaminationBinding
 
 class ExaminationFragment : Fragment() {
 
-    private var _binding: FragmentTestBinding? = null
+    private var _binding: FragmentExaminationBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,7 +28,7 @@ class ExaminationFragment : Fragment() {
         val examinationViewModel =
             ViewModelProvider(this).get(ExaminationViewModel::class.java)
 
-        _binding = FragmentTestBinding.inflate(inflater, container, false)
+        _binding = FragmentExaminationBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
