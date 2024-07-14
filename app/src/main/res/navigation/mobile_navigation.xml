@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_learning" >
         <action
             android:id="@+id/action_navigation_learning_to_navigation_test"
-            app:destination="@id/navigation_test"
+            app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="false" />
     </fragment>

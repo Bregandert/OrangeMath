@@ -40,9 +40,13 @@ class NumberAdapter: RecyclerView.Adapter<NumberAdapter.NumberHolder>() {
 
     }
 
-    fun deleteNumber(numberCount: NumberCount){
-    numberList.remove(numberList.last())
-        notifyDataSetChanged()
+    fun deleteNumber(numberCount: NumberCount) {
+        if (numberList.isNotEmpty()) {
+            numberList.remove(numberList.last())
+            notifyDataSetChanged()
+        } else {
+            numberList.clear()
+        }
     }
 
     fun clearNumberList(numberCount: NumberCount) {
