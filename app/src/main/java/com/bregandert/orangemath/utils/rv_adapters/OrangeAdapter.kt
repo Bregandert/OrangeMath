@@ -40,9 +40,12 @@ class OrangeAdapter: RecyclerView.Adapter<OrangeAdapter.OrangeHolder>() {
 
     }
 
-    fun deleteOrange(orange: Orange){
-    orangeList.remove(orangeList.last())
-        notifyDataSetChanged()
+    fun deleteOrange(orange: Orange) {
+
+        if (orangeList.isNotEmpty()) {
+            orangeList.remove(orangeList.last())
+            notifyDataSetChanged()
+        }
     }
 
     fun clearOrangeList(orange: Orange) {

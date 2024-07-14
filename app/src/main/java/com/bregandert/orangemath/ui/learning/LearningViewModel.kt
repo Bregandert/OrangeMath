@@ -4,20 +4,28 @@ import androidx.lifecycle.ViewModel
 import com.bregandert.orangemath.R
 import com.bregandert.orangemath.domain.entity.NumberCount
 import com.bregandert.orangemath.domain.entity.Orange
-import com.bregandert.orangemath.utils.rv_adapters.NumberAdapter
-import com.bregandert.orangemath.utils.rv_adapters.OrangeAdapter
+import com.bregandert.orangemath.ui.home.HomeFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class LearningViewModel : ViewModel() {
 
     var number = 0
+
+    val scope = CoroutineScope(Dispatchers.IO)
+
 
 //    var _binding: FragmentLearningBinding? = null
 //    val binding get() = _binding!!
 //    lateinit var context: Context
 //    lateinit var binding: FragmentLearningBinding
 
-    val numberAdapter = NumberAdapter()
-    val orangeAdapter = OrangeAdapter()
+//    val numberAdapter = NumberAdapter()
+//    val orangeAdapter = OrangeAdapter()
     val orangeList = listOf(
         R.drawable.ic_orange,
         R.drawable.ic_orange,
@@ -64,25 +72,41 @@ class LearningViewModel : ViewModel() {
 //        }
 //    }
     fun orangeItem(number: Int): Orange {
-//        if (number > -1 && number < 10) {
-//            val numberCount = NumberCount((number).toString(), numberCountList[number])
-            val orange = Orange(number, orangeList[number])
+    if (number >=0 && number<= 10) {
+
+        val orange = Orange(number, orangeList[number])
+        return orange
+    }
+    val orange = Orange(0, orangeList[0])
     return orange
-//            binding.number2.text = number.toString()
-//            binding.number2.visibility = View.VISIBLE
-//            numberAdapter.addNumber(numberCount)
-//            if (number > 0) {
-//                orangeAdapter.addOrange(orange)
-//            }
-//            number++
-//        } else {
-//            binding.case1.visibility = View.VISIBLE
-//        }
     }
 
     fun numberItem(number: Int): NumberCount {
-        val numberCount = NumberCount((number).toString(), numberCountList[number])
+        if (number >=0 && number<= 10) {
+            val numberCount = NumberCount(
+                (HomeFragment.LEARNING_STAGE * 10 + number).toString(),
+                numberCountList[number]
+            )
+            return numberCount
+        }
+        val numberCount = NumberCount(
+            0.toString(),
+            numberCountList[0]
+        )
         return numberCount
+    }
+
+    suspend fun playVoice(number: Int): String {
+        scope.launch {
+            delay(3000)
+        }
+
+        return suspendCoroutine {
+
+
+            val string = "Work"
+            it.resume(string)
+        }
     }
 
 
